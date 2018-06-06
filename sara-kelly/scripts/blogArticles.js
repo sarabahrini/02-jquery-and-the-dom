@@ -1,7 +1,7 @@
 'use strict';
 
 // COMMENT: How is this data utilized within our blog app? What is the structure of this data (your response should include the terms "object", "array", and "key/value pairs")?
-// PUT YOUR RESPONSE HERE
+// We used constructor function in article.js to utilize array of raw data object consisting of keys and it's values as strings in blogArticle.js and assigned the to the related section in html.
 
 let rawData = [
   {
