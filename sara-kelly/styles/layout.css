@@ -1,0 +1,24 @@
+body {
+    background-color: white;
+    color: black;
+    text-align: left;
+    padding-left: 1%;
+ }
+ 
+ .topcolor {
+    background-color: rgb(244, 182, 127);
+ }
+ 
+ .heading-group-h1 {
+    padding: 1%;
+    padding-left: 1%;
+ }
+ 
+ .by {
+    color: black;
+    display:inline-block;
+ }
+
+ .heading-group-h1 h2{
+     font-size: 20px;
+ }
