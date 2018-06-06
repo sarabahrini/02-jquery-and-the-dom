@@ -6,11 +6,12 @@ let articles = [];
 // RESPONSE: The purpose of the function is to create raw data objects. It is capitalized because it is a constructor function. 
 
 
-function Article (rawDataObj) {
+function Article(rawDataObj) {
   // TODO: Use the JS object that is passed in to complete this constructor function:
   // Save ALL the properties of `rawDataObj` into `this`
   //NOTE: this function doesn't return anything in the page yet. 
-  
+  console.log('inside JS')
+
   this.title = rawDataObj.title;
   this.category = rawDataObj.category;
   this.author = rawDataObj.author;
@@ -20,51 +21,62 @@ function Article (rawDataObj) {
 
 }
 
-Article.prototype.toHtml = function() {
+Article.prototype.toHtml = function () {
   // COMMENT: What is the benefit of cloning the article? (see the jQuery docs)
   // RESPONSE: allows us to modify the content/ element prior to inserting them back into the document. 
-  
+
 
   let $newArticle = $('article.template').clone();
-  $(this.publishedOn).removeClass('article-template');
+  $newArticle.removeClass('template');
   /* TODO: This cloned article still has a class of template. In our modules.css stylesheet, we should give all elements with a class of template a display of none so that our template does not display in the browser. But, we also need to make sure we're not accidentally hiding our cloned article. */
 
   if (!this.publishedOn) $newArticle.addClass('draft');
- 
-  $newArticle.attr('data-title', this.title);
   $newArticle.attr('data-category', this.category);
-  $newArticle.attr('data-author', this.author);
-  $newArticle.attr('data-authorUrl', this.authorUrl);
-  $newArticle.attr('data-publishedOn', this.publishedOn);
-  $newArticle.text(this.body);
 
   /* TODO: Now use jQuery traversal and setter methods to fill in the rest of the current template clone with values of the properties of this particular Article instance.
-    We need to fill in:
-      1. author name,
-      2. author url,
-      3. article title,
-      4. article body, and
-      5. publication date. */
-     
+     We need to fill in:
+       1. author name,
+       2. author url,
+       3. article title,
+       4. article body, and
+       5. publication date. */
+
+  //find the contents from html by using tag/class/attributes
+  $newArticle.find('h1').html(this.title);
+  $newArticle.find('address a').html(this.author);
+  $newArticle.find('address a').html(this.authorUrl);
+  $newArticle.find('time').html(this.publishedOn);
+  $newArticle.find('.article-body').html(this.body);
+
 
 
   // REVIEW: Display the date as a relative number of 'days ago'
-  $newArticle.find('time').html('about ' + parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago');
+  $newArticle.find('time').html('about ' + parseInt((new Date() - new Date(this.publishedOn)) / 60 / 60 / 24 / 1000) + ' days ago');
   $newArticle.append('<hr>');
   return $newArticle;
 };
 
-rawData.sort(function(a,b) {
+rawData.sort(function (a, b) {
   // REVIEW: Take a look at this sort method; This may be the first time we've seen it. Look at the docs and think about how the dates would be sorted if the callback were not included in this method.
   return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
 });
 
 // TODO: Refactor these for loops using the .forEach() array method.
 
-for(let i = 0; i < rawData.length; i++) {
+for (let i = 0; i < rawData.length; i++) {
   articles.push(new Article(rawData[i]));
 }
+//we want to push collected rawData into newArticle
+// rawData.forEach(function (e) {
+//   articles.push(new Article(e))
+// });
 
-for(let i = 0; i < articles.length; i++) {
+//
+
+
+for (let i = 0; i < articles.length; i++) {
   $('#articles').append(articles[i].toHtml());
 }
+// articles.forEach(function (item) {
+//   $('#articles').append(item.toHtml());
+// });
