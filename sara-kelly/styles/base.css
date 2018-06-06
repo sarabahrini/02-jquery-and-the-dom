@@ -1,0 +1,35 @@
+body {
+    text-align: center;
+    background-color: grey;
+  }
+  
+  .icon-menu {
+    background-color: yellow;
+    font-size: 4em;
+  }
+
+  nav ul {
+    display:none;
+  }
+
+ nav:hover ul{
+ display:block
+ }
+
+  
+  @media only screen and (min-width: 650px) {
+    body {
+      background-color: green;
+      color: yellow;
+    }
+    nav ul{
+      display:block;
+      padding-bottom: 2%;
+    }
+    nav ul li{
+      display:inline;
+    }
+    .icon-menu {
+      display: none;
+    }
+  }
