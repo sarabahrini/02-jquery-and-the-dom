@@ -44,7 +44,7 @@ Article.prototype.toHtml = function () {
   //find the contents from html by using tag/class/attributes
   $newArticle.find('h1').html(this.title);
   $newArticle.find('address a').html(this.author);
-  $newArticle.find('address a').html(this.authorUrl);
+  $newArticle.find('address a').attr('href',this.authorUrl);
   $newArticle.find('time').html(this.publishedOn);
   $newArticle.find('.article-body').html(this.body);
 
